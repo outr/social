@@ -28,17 +28,17 @@ lazy val root = project.in(file("."))
 
 lazy val core = project.in(file("core"))
   .settings(
-    name := "social-core"
+    name := "social-core",
+    libraryDependencies ++= Seq(
+      "com.machinepublishers" % "jbrowserdriver" % "1.0.1",
+      "io.youi" %% "youi-client" % "0.9.10-SNAPSHOT"
+    )
   )
 
 lazy val facebook = project.in(file("facebook"))
   .settings(
     name := "social-facebook",
     fork := true,
-    updateOptions := updateOptions.value.withLatestSnapshots(false),
-    libraryDependencies ++= Seq(
-      "io.youi" %% "youi-client" % "0.9.10-SNAPSHOT",
-      "com.machinepublishers" % "jbrowserdriver" % "1.0.1"
-    )
+    updateOptions := updateOptions.value.withLatestSnapshots(false)
   )
   .dependsOn(core)
